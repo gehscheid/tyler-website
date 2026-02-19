@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tyler Valiquette | PhD Candidate, UCL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0f172a;
+      --slate:  #1e293b;
+      --mid:    #334155;
+      --muted:  #64748b;
+      --subtle: #94a3b8;
+      --border: #e2e8f0;
+      --bg:     #f8fafc;
+      --white:  #ffffff;
+      --accent: #2563eb;
+      --accent-light: #dbeafe;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--slate);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, var(--navy) 0%, #1e3a5f 60%, #0f172a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('field_visits.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.08;
+      mix-blend-mode: luminosity;
+      z-index: 0;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 70%);
+      top: -100px; right: -100px;
+      pointer-events: none;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37,99,235,0.10) 0%, transparent 70%);
+      bottom: -80px; left: 10%;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 8rem 2rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(37,99,235,0.2);
+      border: 1px solid rgba(37,99,235,0.4);
+      color: #93c5fd;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: #94a3b8;
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .badge {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #cbd5e1;
+      padding: 0.35rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(37,99,235,0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #cbd5e1;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.35);
+    }
+
+    .hero-photo-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .hero-photo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(37,99,235,0.35), rgba(37,99,235,0.05));
+      z-index: 0;
+    }
+
+    .hero-photo-wrap::after {
+      content: '';
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37,99,235,0.3), transparent 70%);
+      bottom: -30px;
+      right: -30px;
+      z-index: 0;
+    }
+
+    .hero-photo {
+      position: relative;
+      z-index: 1;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      box-shadow: 0 32px 64px rgba(0,0,0,0.4);
+    }
+
+    .hero-photo-placeholder {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 3px solid rgba(37,99,235,0.5);
+      background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 6px rgba(37,99,235,0.12);
+      font-size: 4rem;
+      color: rgba(255,255,255,0.4);
+      font-family: 'Lora', serif;
+      font-weight: 600;
+      letter-spacing: -1px;
+    }
+
+    /* ── SECTIONS ────────────────────────────────────── */
+    section { padding: 6rem 2rem; }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 3.5rem;
+    }
+
+    /* ── ABOUT ───────────────────────────────────────── */
+    #about { background: var(--white); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--mid);
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .info-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .info-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .info-icon {
+      width: 38px; height: 38px;
+      border-radius: 8px;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+
+    .info-card h4 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .info-card p {
+      font-size: 0.925rem;
+      color: var(--slate);
+      font-weight: 500;
+    }
+
+    /* ── EXPERIENCE ──────────────────────────────────── */
+    #experience { background: var(--bg); }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 2.5rem;
+    }
+
+    .timeline-item:last-child { padding-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: -2.45rem;
+      top: 0.3rem;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--white);
+      box-shadow: 0 0 0 3px var(--accent-light);
+    }
+
+    .timeline-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .timeline-date {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 0.2rem 0.65rem;
+      border-radius: 4px;
+    }
+
+    .timeline-org {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .timeline-item h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-item p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 680px;
+    }
+
+    /* ── PUBLICATIONS ────────────────────────────────── */
+    #publications { background: var(--white); }
+
+    .pub-filters {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .filter-btn {
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .pub-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .pub-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem 1.75rem;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .pub-card:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      border-color: #c7d7f5;
+    }
+
+    .pub-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .pub-title {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.4;
+    }
+
+    .pub-type {
+      flex-shrink: 0;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 0.25rem 0.7rem;
+      border-radius: 4px;
+    }
+
+    .pub-type.journal {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .pub-type.conference {
+      background: #fef3c7;
+      color: #b45309;
+    }
+
+    .pub-type.working {
+      background: #f3e8ff;
+      color: #7e22ce;
+    }
+
+    .pub-authors {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .pub-venue {
+      font-size: 0.85rem;
+      color: var(--mid);
+      font-style: italic;
+      margin-bottom: 0.75rem;
+    }
+
+    .pub-abstract {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 0.9rem;
+    }
+
+    .pub-links {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .pub-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.3rem 0.75rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.15s;
+      border: 1px solid var(--border);
+      color: var(--mid);
+      background: var(--white);
+    }
+
+    .pub-link:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    /* ── TEACHING ────────────────────────────────────── */
+    #teaching { background: var(--bg); }
+
+    .teaching-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .teaching-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .teaching-card:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      border-color: #c7d7f5;
+    }
+
+    .teaching-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .teaching-card h3 {
+      font-size: 0.975rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.3rem;
+    }
+
+    .teaching-card .course-code {
+      font-size: 0.78rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+
+    .teaching-card p {
+      font-size: 0.855rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .teaching-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .teaching-meta span {
+      font-size: 0.78rem;
+      color: var(--subtle);
+      font-weight: 500;
+    }
+
+    /* ── CONTACT ─────────────────────────────────────── */
+    #contact {
+      background: var(--navy);
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+
+    #contact .section-label { color: #60a5fa; }
+    #contact .section-title { color: white; margin: 0 auto 1rem; }
+    #contact .section-desc { color: #94a3b8; margin: 0 auto 2.5rem; }
+
+    .contact-card {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.75rem;
+    }
+
+    .contact-email {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      color: #e2e8f0;
+      font-size: 1.05rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .contact-email:hover {
+      background: rgba(37,99,235,0.25);
+      border-color: rgba(37,99,235,0.5);
+      color: white;
+    }
+
+    .contact-socials {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: #94a3b8;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.2s;
+    }
+
+    .social-btn:hover {
+      color: white;
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: #080f1c;
+      color: #475569;
+      text-align: center;
+      padding: 1.5rem 2rem;
+      font-size: 0.82rem;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 6rem 1.5rem 4rem;
+      }
+
+      .hero-photo-wrap { margin: 0 auto; }
+      .hero-photo { width: 240px; height: 300px; }
+      .hero-badges { justify-content: center; }
+      .hero-cta { justify-content: center; }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .nav-links { gap: 1.25rem; }
+
+      section { padding: 4rem 1.5rem; }
+
+      .pub-header { flex-direction: column; }
+    }
+
+    @media (max-width: 520px) {
+      .nav-links { display: none; }
+    }
+
+    /* ── DIVIDER ─────────────────────────────────────── */
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── SCROLL INDICATOR ────────────────────────────── */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="#hero">Tyler Valiquette</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#awards">Awards</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="4"/></svg>
+          Available for academic collaboration
+        </div>
+        <h1>Tyler<br/>Valiquette</h1>
+        <p class="hero-subtitle">
+          Expert in Forced Migration, Displacement, Humanitarian and Development Research.
+        </p>
+        <div class="hero-badges">
+          <span class="badge">University College London</span>
+          <span class="badge">Forced Migration</span>
+          <span class="badge">LGBTQI+ Rights</span>
+          <span class="badge">Humanitarian Governance</span>
+        </div>
+        <div class="hero-cta">
+          <a href="#publications" class="btn btn-primary">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            View Research
+          </a>
+          <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        </div>
+      </div>
+      <div class="hero-photo-wrap">
+        <img src="tyler_photo.png" alt="Tyler Valiquette" class="hero-photo" />
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      Scroll
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <p class="section-label">About</p>
+      <h2 class="section-title">Background &amp; Research Focus</h2>
+      <div class="divider"></div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I research violence, gender, and forced displacement, focusing on how LGBTQI+ migrants and refugees navigate humanitarian systems. My work examines the intersection of forced migration, sexuality, and humanitarian governance, with an emphasis on resilience and solidarity amid crisis.
+          </p>
+          <p>
+            I am an <strong>SSHRC Doctoral Scholar</strong> completing a PhD in Geography at <strong>University College London (UCL)</strong>. My research has been published in journals such as <em>Nature Cities</em>, <em>Global Networks</em>, and the <em>Journal of Gender Studies</em>.
+          </p>
+        </div>
+        <div class="info-cards">
+          <div class="info-card">
+            <div class="info-icon">🎓</div>
+            <div>
+              <h4>Institution</h4>
+              <p>University College London (UCL) · PhD in Geography</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">🔬</div>
+            <div>
+              <h4>Research Areas</h4>
+              <p>Forced Migration, LGBTQI+ Displacement, Humanitarian Governance, Gender &amp; Violence</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">📍</div>
+            <div>
+              <h4>Location</h4>
+              <p>London, United Kingdom</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">🌐</div>
+            <div>
+              <h4>Languages</h4>
+              <p>English (native), Portuguese (advanced), French (advanced)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-inner">
+      <p class="section-label">Experience</p>
+      <h2 class="section-title">Academic &amp; Professional Background</h2>
+      <div class="divider"></div>
+      <p class="section-desc">
+        A record of academic, research, and professional roles spanning political science, policy analysis, and higher education.
+      </p>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">2021 – Present</span>
+            <span class="timeline-org">University College London</span>
+          </div>
+          <h3>PhD Candidate, Department of Political Science</h3>
+          <p>
+            Pursuing doctoral research on comparative welfare state reform and the politics of institutional change in advanced democracies. Recipient of the UCL Graduate Research Scholarship and the Faculty of Social &amp; Historical Sciences Doctoral Fellowship.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">2022 – 2024</span>
+            <span class="timeline-org">UCL Department of Political Science</span>
+          </div>
+          <h3>Graduate Teaching Assistant</h3>
+          <p>
+            Lead seminars for undergraduate modules in Comparative Politics, Political Economy, and Introduction to Research Methods. Responsible for marking, student advising, and curriculum design contributions.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">2020 – 2021</span>
+            <span class="timeline-org">University College London</span>
+          </div>
+          <h3>MSc Comparative Politics</h3>
+          <p>
+            Completed with Distinction. Dissertation examined partisan preferences and welfare retrenchment in post-crisis European economies. Awarded the Departmental Distinction Prize.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">2019 – 2020</span>
+            <span class="timeline-org">Parliament of Canada</span>
+          </div>
+          <h3>Policy Research Analyst (Intern)</h3>
+          <p>
+            Contributed to legislative research and briefings on social policy, labour market regulation, and intergovernmental affairs for the Standing Committee on Human Resources, Skills and Social Development.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">2015 – 2019</span>
+            <span class="timeline-org">McGill University</span>
+          </div>
+          <h3>BA Political Science (Honours), Minor in Economics</h3>
+          <p>
+            Graduated with First Class Honours. Senior thesis on fiscal federalism and intergovernmental transfers in Canada. Member of the Model UN team and undergraduate research assistant.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <div class="section-inner">
+      <p class="section-label">Research</p>
+      <h2 class="section-title">Publications &amp; Working Papers</h2>
+      <div class="divider"></div>
+      <p class="section-desc">
+        Peer-reviewed articles, conference papers, and ongoing research projects in comparative political economy and public policy.
+      </p>
+
+      <div class="pub-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="published">Published</button>
+        <button class="filter-btn" data-filter="inprogress">In Progress</button>
+      </div>
+
+      <div class="pub-list">
+
+        <!-- ACCEPTED -->
+        <div class="pub-card" data-type="inprogress">
+          <div class="pub-header">
+            <p class="pub-title">"Dumped in a hotel by the sea": The risks and harms of human trafficking and exploitation associated with placing unaccompanied asylum-seeking children in Home Office Hotels</p>
+            <span class="pub-type working">Accepted</span>
+          </div>
+          <p class="pub-authors">Ayeb-Karlsson, S., Valiquette, T., Cockbain, E., &amp; Duran, L.</p>
+          <p class="pub-venue">Journal of Social Welfare and Family Law</p>
+          <div class="pub-links">
+            <a href="mailto:ty.valiquette@gmail.com" class="pub-link">Request PDF</a>
+          </div>
+        </div>
+
+        <!-- UNDER REVIEW -->
+        <div class="pub-card" data-type="inprogress">
+          <div class="pub-header">
+            <p class="pub-title">Flipping the Lens: Exploring LGBTQ+ Refugee and Migrant Mobilities in São Paulo, Brazil with Photovoice and Videovoice</p>
+            <span class="pub-type working">Under Review</span>
+          </div>
+          <p class="pub-authors">Valiquette, T., &amp; Su, Y.</p>
+          <p class="pub-venue">Journal of Qualitative Inquiry</p>
+          <div class="pub-links">
+            <a href="mailto:ty.valiquette@gmail.com" class="pub-link">Request PDF</a>
+          </div>
+        </div>
+
+        <!-- REVISE & RESUBMIT -->
+        <div class="pub-card" data-type="inprogress">
+          <div class="pub-header">
+            <p class="pub-title">"Working the Pages": Entrepreneurial Livelihood Strategies of Trans Venezuelan Asylum Seekers in Brazil during COVID-19</p>
+            <span class="pub-type working">Revise &amp; Resubmit</span>
+          </div>
+          <p class="pub-authors">Su, Y., Valiquette, T., Kinitz, D., &amp; De Oliveira Cunha, C.</p>
+          <p class="pub-venue">Gender, Work &amp; Organization</p>
+          <div class="pub-links">
+            <a href="mailto:ty.valiquette@gmail.com" class="pub-link">Request PDF</a>
+          </div>
+        </div>
+
+        <!-- 2025 -->
+        <div class="pub-card" data-type="published">
+          <div class="pub-header">
+            <p class="pub-title">Networks of Queer Migration: A Case Study of the Social Capital of LGBTQ+ Venezuelan Asylum Seekers in Northern Brazil</p>
+            <span class="pub-type journal">2025</span>
+          </div>
+          <p class="pub-authors">Su, Y., &amp; Valiquette, T.</p>
+          <p class="pub-venue">Global Networks</p>
+          <div class="pub-links">
+            <a href="mailto:ty.valiquette@gmail.com" class="pub-link">DOI</a>
+            <a href="mailto:ty.valiquette@gmail.com" class="pub-link">Request PDF</a>
+          </div>
+        </div>
+
+        <!-- 2024 Photovoice -->
+        <div class="pub-card" data-type="published">
+          <div class="pub-header">
+            <p class="pub-title">Combining Photovoice and Videovoice for Participatory Research: Visual Storytelling with LGBTQ+ Refugees and Migrants</p>
+            <span class="pub-type journal">2024</span>
+          </div>
+          <p class="pub-authors">Valiquette, T., &amp; Su, Y.</p>
+          <p class="pub-venue">The Journal of Participatory Research Methods</p>
+          <div class="pub-links">
+            <a href="mailto:ty.valiquette@gmail.com" class="pub-link">DOI</a>
+            <a href="mailto:ty.valiquette@gmail.com" class="pub-link">Request PDF</a>
+          </div>
+        </div>
+
+        <!-- 2024 Nature Cities -->
+        <div class="pub-card" data-type="published">
+          <div class="pub-header">
+            <p class="pub-title">Bogotá's 'LGBTQI+ Houses' Are Transforming Support for Displaced LGBTQI+ Venezuelans</p>
+            <span class="pub-type journal">2024</span>
+          </div>
+          <p class="pub-authors">Valiquette, T.</p>
+          <p class="pub-venue">Nature Cities</p>
+          <div class="pub-links">
+            <a href="mailto:ty.valiquette@gmail.com" class="pub-link">DOI</a>
+            <a href="mailto:ty.valiquette@gmail.com" class="pub-link">Request PDF</a>
+          </div>
+        </div>
+
+        <!-- 2022 Anti-Trafficking -->
+        <div class="pub-card" data-type="published">
+          <div class="pub-header">
+            <p class="pub-title">"They Kill us Transwomen": Migration, Informal Labour and Sex Work among Trans-Venezuelan Asylum Seekers and Undocumented Migrants in Brazil during COVID-19</p>
+            <span class="pub-type journal">2022</span>
+          </div>
+          <p class="pub-authors">Su, Y., Valiquette, T., &amp; Scheidweiler, G.</p>
+          <p class="pub-venue">The Anti-Trafficking Review, 18</p>
+          <div class="pub-links">
+            <a href="mailto:ty.valiquette@gmail.com" class="pub-link">DOI</a>
+            <a href="mailto:ty.valiquette@gmail.com" class="pub-link">Request PDF</a>
+          </div>
+        </div>
+
+        <!-- 2021 Humanitarian Alternatives -->
+        <div class="pub-card" data-type="published">
+          <div class="pub-header">
+            <p class="pub-title">Unwelcomed: Examining Brazil's Broken Promise to Venezuelan Refugees amid COVID-19</p>
+            <span class="pub-type journal">2021</span>
+          </div>
+          <p class="pub-authors">Valiquette, T., Scheidweiler, G., &amp; Su, Y.</p>
+          <p class="pub-venue">Humanitarian Alternatives, 18, 104–114</p>
+          <div class="pub-links">
+            <a href="mailto:ty.valiquette@gmail.com" class="pub-link">DOI</a>
+            <a href="mailto:ty.valiquette@gmail.com" class="pub-link">Request PDF</a>
+          </div>
+        </div>
+
+        <!-- 2021 Statelessness -->
+        <div class="pub-card" data-type="published">
+          <div class="pub-header">
+            <p class="pub-title">Surviving Overlapping Precarity in a "Gigantic Hellhole": A Case Study of Venezuelan LGBTQI+ Asylum Seekers and Undocumented Migrants in Brazil amid COVID-19</p>
+            <span class="pub-type journal">2021</span>
+          </div>
+          <p class="pub-authors">Su, Y., Valiquette, T., &amp; Cowper-Smith, Y.</p>
+          <p class="pub-venue">Statelessness and Citizenship Review, 3(1), 155–162</p>
+          <div class="pub-links">
+            <a href="mailto:ty.valiquette@gmail.com" class="pub-link">DOI</a>
+            <a href="mailto:ty.valiquette@gmail.com" class="pub-link">Request PDF</a>
+          </div>
+        </div>
+
+        <!-- 2021 Journal of Gender Studies -->
+        <div class="pub-card" data-type="published">
+          <div class="pub-header">
+            <p class="pub-title">Of Masks and Fairies: Connecting the Mounting Threats Against LGBTQI+ Asylum Seekers during COVID-19 in Brazil to Anti-Gender, Anti-Gay Countermovements</p>
+            <span class="pub-type journal">2021</span>
+          </div>
+          <p class="pub-authors">Cowper-Smith, Y., Su, Y., &amp; Valiquette, T.</p>
+          <p class="pub-venue">Journal of Gender Studies</p>
+          <div class="pub-links">
+            <a href="mailto:ty.valiquette@gmail.com" class="pub-link">DOI</a>
+            <a href="mailto:ty.valiquette@gmail.com" class="pub-link">Request PDF</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FELLOWSHIPS & AWARDS -->
+  <section id="awards" style="background:var(--bg); padding:6rem 2rem;">
+    <div class="section-inner">
+      <p class="section-label">Recognition</p>
+      <h2 class="section-title">Fellowships &amp; Awards</h2>
+      <div class="divider"></div>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">2025</span>
+            <span class="timeline-org">University of Oxford</span>
+          </div>
+          <h3>Visiting Fellow — Refugee Studies Centre</h3>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">2025</span>
+            <span class="timeline-org">York University</span>
+          </div>
+          <h3>Visiting Fellow — Centre for Refugee Studies</h3>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">2024</span>
+            <span class="timeline-org">Next Economy Trust</span>
+          </div>
+          <h3>Next Economy Trust Fellow <span style="color:var(--muted); font-weight:400; font-size:0.9rem;">— $10,000</span></h3>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">2023–2024</span>
+            <span class="timeline-org">University College London</span>
+          </div>
+          <h3>Fellow — Department of Risk and Disaster Reduction</h3>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">2022–2026</span>
+            <span class="timeline-org">SSHRC</span>
+          </div>
+          <h3>SSHRC Doctoral Fellowship <span style="color:var(--muted); font-weight:400; font-size:0.9rem;">— $120,000</span></h3>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">2017–2020</span>
+            <span class="timeline-org">University of Brasilia</span>
+          </div>
+          <h3>Visiting Researcher</h3>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">2017</span>
+            <span class="timeline-org">Maclean's Magazine</span>
+          </div>
+          <h3>Top 25 Under 25</h3>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">2016</span>
+            <span class="timeline-org">MITACS</span>
+          </div>
+          <h3>Globalink Research Award <span style="color:var(--muted); font-weight:400; font-size:0.9rem;">— $5,000</span></h3>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">2016</span>
+            <span class="timeline-org">LAMBDA</span>
+          </div>
+          <h3>Research Scholarship on LGBT Rights <span style="color:var(--muted); font-weight:400; font-size:0.9rem;">— $2,500</span></h3>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">2016</span>
+            <span class="timeline-org">University of Guelph</span>
+          </div>
+          <h3>Political Science Award <span style="color:var(--muted); font-weight:400; font-size:0.9rem;">— $5,000</span></h3>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-meta">
+            <span class="timeline-date">2016</span>
+            <span class="timeline-org">University of Guelph</span>
+          </div>
+          <h3>Political Science Award <span style="color:var(--muted); font-weight:400; font-size:0.9rem;">— $2,500</span></h3>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH PROJECTS -->
+  <section id="projects" style="background:var(--white); padding:6rem 2rem;">
+    <div class="section-inner">
+      <p class="section-label">Funded Research</p>
+      <h2 class="section-title">Recent Research Projects</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Collaborative, community-engaged research on queer migration, displacement, and humanitarian governance, supported by major Canadian research funding.</p>
+
+      <div style="display:flex; flex-direction:column; gap:1.5rem;">
+
+        <div class="pub-card" style="border-left: 4px solid var(--accent);">
+          <div class="pub-header">
+            <p class="pub-title">Sanctuaries of Hope: Co-Creating Knowledge, Policies, Workshops and Participatory Films on South-South Queer Migration with Bogotá's Pioneering LGBTQ+ Houses</p>
+            <span class="pub-type journal" style="white-space:nowrap;">2025–2028</span>
+          </div>
+          <p class="pub-authors" style="font-weight:600; color:var(--slate); margin-bottom:0;">SSHRC Partnership Development Grant &nbsp;·&nbsp; <span style="color:var(--accent);">$198,360</span></p>
+        </div>
+
+        <div class="pub-card" style="border-left: 4px solid var(--accent);">
+          <div class="pub-header">
+            <p class="pub-title">Safe Expression: Giving Voice to LGBT Asylum Seekers amid COVID-19 in Brazil</p>
+            <span class="pub-type journal" style="white-space:nowrap;">2021–2023</span>
+          </div>
+          <p class="pub-authors" style="font-weight:600; color:var(--slate); margin-bottom:0;">SSHRC Connection Grant &nbsp;·&nbsp; <span style="color:var(--accent);">$91,000</span></p>
+        </div>
+
+        <div class="pub-card" style="border-left: 4px solid var(--accent);">
+          <div class="pub-header">
+            <p class="pub-title">At the Edge of Safety: Comparing Responses to Venezuelan LGBT Refugees in Brazil and Colombia amid COVID-19</p>
+            <span class="pub-type journal" style="white-space:nowrap;">2021–2023</span>
+          </div>
+          <p class="pub-authors" style="font-weight:600; color:var(--slate); margin-bottom:0;">SSHRC Insight Development Grant &nbsp;·&nbsp; <span style="color:var(--accent);">$74,592</span></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">Get in Touch</h2>
+      <p class="section-desc">
+        I welcome inquiries about my research, collaboration opportunities, and academic correspondence.
+      </p>
+      <div class="contact-card">
+        <a href="mailto:ty.valiquette@gmail.com" class="contact-email">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="M2 7l10 7 10-7"/>
+          </svg>
+          ty.valiquette@gmail.com
+        </a>
+        <div class="contact-socials">
+          <a href="mailto:ty.valiquette@gmail.com" class="social-btn">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+            LinkedIn
+          </a>
+          <a href="mailto:ty.valiquette@gmail.com" class="social-btn">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            GitHub
+          </a>
+          <a href="mailto:ty.valiquette@gmail.com" class="social-btn">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+            Google Scholar
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Tyler Valiquette &middot; PhD Candidate, University College London</p>
+  </footer>
+
+  <script>
+    // Smooth active nav link highlight
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(l => l.style.color = '');
+          const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+          if (active) active.style.color = 'var(--accent)';
+        }
+      });
+    }, { threshold: 0.4 });
+
+    sections.forEach(s => observer.observe(s));
+
+    // Publication filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.pub-list .pub-card').forEach(card => {
+          if (filter === 'all' || card.dataset.type === filter) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
