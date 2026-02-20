@@ -806,6 +806,92 @@
       margin-bottom: 2.5rem;
     }
 
+    /* ── CITE MODAL ──────────────────────────────────── */
+    .cite-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,20,40,0.7);
+      backdrop-filter: blur(4px);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .cite-modal-overlay.open { display: flex; }
+
+    .cite-modal {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem 2rem 1.5rem;
+      width: 100%;
+      max-width: 560px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.25);
+      position: relative;
+      animation: modalIn 0.25s ease;
+    }
+
+    .cite-modal h3 {
+      font-family: 'Lora', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+
+    .cite-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      font-size: 0.875rem;
+      color: var(--mid);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+      font-family: 'Georgia', serif;
+    }
+
+    .cite-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+    }
+
+    .cite-copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1.25rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .cite-copy-btn:hover { background: #1b4332; }
+    .cite-copy-btn.copied { background: #15803d; }
+
+    .cite-close-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.6rem 1.25rem;
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .cite-close-btn:hover { background: var(--bg); }
+
     /* ── MODAL ───────────────────────────────────────── */
     .modal-overlay {
       display: none;
@@ -1155,6 +1241,19 @@
           </div>
         </div>
 
+        <!-- REVISE & RESUBMIT -->
+        <div class="pub-card" data-type="inprogress">
+          <div class="pub-header">
+            <p class="pub-title">"Working the Pages": Entrepreneurial Livelihood Strategies of Trans Venezuelan Asylum Seekers in Brazil during COVID-19</p>
+            <span class="pub-type working">Revise &amp; Resubmit</span>
+          </div>
+          <p class="pub-authors">Su, Y., Valiquette, T., Kinitz, D., &amp; De Oliveira Cunha, C.</p>
+          <p class="pub-venue">Gender, Work &amp; Organization</p>
+          <div class="pub-links">
+            <button class="pub-link request-pdf-btn" data-title='"Working the Pages": Entrepreneurial Livelihood Strategies of Trans Venezuelan Asylum Seekers in Brazil during COVID-19'>Request PDF</button>
+          </div>
+        </div>
+
         <!-- PUBLISHED - Flipping the Lens -->
         <div class="pub-card" data-type="published">
           <div class="pub-header">
@@ -1166,19 +1265,7 @@
           <div class="pub-links">
             <a href="https://doi.org/10.1177/10778004261417671" target="_blank" class="pub-link">DOI</a>
             <a href="https://journals.sagepub.com/doi/10.1177/10778004261417671" target="_blank" class="pub-link">Access</a>
-          </div>
-        </div>
-
-        <!-- REVISE & RESUBMIT -->
-        <div class="pub-card" data-type="inprogress">
-          <div class="pub-header">
-            <p class="pub-title">"Working the Pages": Entrepreneurial Livelihood Strategies of Trans Venezuelan Asylum Seekers in Brazil during COVID-19</p>
-            <span class="pub-type working">Revise &amp; Resubmit</span>
-          </div>
-          <p class="pub-authors">Su, Y., Valiquette, T., Kinitz, D., &amp; De Oliveira Cunha, C.</p>
-          <p class="pub-venue">Gender, Work &amp; Organization</p>
-          <div class="pub-links">
-            <button class="pub-link request-pdf-btn" data-title='"Working the Pages": Entrepreneurial Livelihood Strategies of Trans Venezuelan Asylum Seekers in Brazil during COVID-19'>Request PDF</button>
+            <button class="pub-link" id="openCiteModal">Cite</button>
           </div>
         </div>
 
@@ -1241,7 +1328,7 @@
         <!-- 2021 Humanitarian Alternatives -->
         <div class="pub-card" data-type="published">
           <div class="pub-header">
-            <p class="pub-title">Unwelcomed: Examining Brazil's Broken Promise to Venezuelan Refugees amid COVID-19</p>
+            <p class="pub-title">Unwelcome in Brazil: the broken promise to Venezuelan refugees</p>
             <span class="pub-type journal">2021</span>
           </div>
           <p class="pub-authors">Valiquette, T., Scheidweiler, G., &amp; Su, Y.</p>
@@ -1464,6 +1551,21 @@
     </div>
   </section>
 
+  <!-- CITE MODAL -->
+  <div class="cite-modal-overlay" id="citeModal">
+    <div class="cite-modal">
+      <h3>Citation</h3>
+      <div class="cite-box" id="citeText">Valiquette, T., &amp; Su, Y. (2026). Flipping the Lens: Using Instagram for Photovoice and Videovoice With LGBTQ+ Migrants in São Paulo. <em>Qualitative Inquiry</em>, 0(0). https://doi.org/10.1177/10778004261417671</div>
+      <div class="cite-actions">
+        <button class="cite-close-btn" id="citeClose">Close</button>
+        <button class="cite-copy-btn" id="citeCopy">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copy Citation
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- PDF REQUEST MODAL -->
   <div class="modal-overlay" id="pdfModal">
     <div class="modal">
@@ -1537,6 +1639,39 @@
     }, { threshold: 0.4 });
 
     sections.forEach(s => observer.observe(s));
+
+    // Cite Modal
+    const citeModal  = document.getElementById('citeModal');
+    const citeClose  = document.getElementById('citeClose');
+    const citeCopy   = document.getElementById('citeCopy');
+    const citeText   = document.getElementById('citeText');
+    const openCite   = document.getElementById('openCiteModal');
+
+    openCite.addEventListener('click', () => {
+      citeModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+
+    function closeCiteModal() {
+      citeModal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    citeClose.addEventListener('click', closeCiteModal);
+    citeModal.addEventListener('click', e => { if (e.target === citeModal) closeCiteModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCiteModal(); });
+
+    citeCopy.addEventListener('click', () => {
+      const text = `Valiquette, T., & Su, Y. (2026). Flipping the Lens: Using Instagram for Photovoice and Videovoice With LGBTQ+ Migrants in São Paulo. Qualitative Inquiry, 0(0). https://doi.org/10.1177/10778004261417671`;
+      navigator.clipboard.writeText(text).then(() => {
+        citeCopy.textContent = '✓ Copied!';
+        citeCopy.classList.add('copied');
+        setTimeout(() => {
+          citeCopy.innerHTML = `<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy Citation`;
+          citeCopy.classList.remove('copied');
+        }, 2000);
+      });
+    });
 
     // PDF Request Modal
     const modal        = document.getElementById('pdfModal');
