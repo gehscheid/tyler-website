@@ -1263,9 +1263,8 @@
           <p class="pub-authors">Valiquette, T., &amp; Su, Y.</p>
           <p class="pub-venue">Journal of Qualitative Inquiry</p>
           <div class="pub-links">
-            <a href="https://doi.org/10.1177/10778004261417671" target="_blank" class="pub-link">DOI</a>
             <a href="https://journals.sagepub.com/doi/10.1177/10778004261417671" target="_blank" class="pub-link">Access</a>
-            <button class="pub-link" id="openCiteModal">Cite</button>
+            <button class="pub-link cite-btn" data-citation="Valiquette, T., &amp; Su, Y. (2026). Flipping the Lens: Using Instagram for Photovoice and Videovoice With LGBTQ+ Migrants in São Paulo. Qualitative Inquiry, 0(0). https://doi.org/10.1177/10778004261417671">Cite</button>
           </div>
         </div>
 
@@ -1278,8 +1277,8 @@
           <p class="pub-authors">Su, Y., &amp; Valiquette, T.</p>
           <p class="pub-venue">Global Networks</p>
           <div class="pub-links">
-            <a href="https://doi.org/10.1111/glob.70017" target="_blank" class="pub-link">DOI</a>
             <a href="https://onlinelibrary.wiley.com/doi/full/10.1111/glob.70017" target="_blank" class="pub-link">Access</a>
+            <button class="pub-link cite-btn" data-citation="Su, Y., Valiquette, T. and Cunha, C.D.O. (2025), Networks of South–South Queer Forced Migration: LGBTQ+ Venezuelans in Northern Brazil During COVID-19. Global Networks, 25: e70017. https://doi.org/10.1111/glob.70017">Cite</button>
           </div>
         </div>
 
@@ -1292,7 +1291,6 @@
           <p class="pub-authors">Valiquette, T., &amp; Su, Y.</p>
           <p class="pub-venue">The Journal of Participatory Research Methods</p>
           <div class="pub-links">
-            <a href="https://doi.org/10.35844/001c.123790" target="_blank" class="pub-link">DOI</a>
             <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=95C6Zq8AAAAJ&citation_for_view=95C6Zq8AAAAJ:WF5omc3nYNoC" target="_blank" class="pub-link">Access</a>
           </div>
         </div>
@@ -1306,7 +1304,6 @@
           <p class="pub-authors">Valiquette, T.</p>
           <p class="pub-venue">Nature Cities</p>
           <div class="pub-links">
-            <a href="https://doi.org/10.1038/s44284-024-00176-9" target="_blank" class="pub-link">DOI</a>
             <a href="https://www.nature.com/articles/s44284-024-00176-9" target="_blank" class="pub-link">Access</a>
           </div>
         </div>
@@ -1320,7 +1317,6 @@
           <p class="pub-authors">Su, Y., Valiquette, T., &amp; Scheidweiler, G.</p>
           <p class="pub-venue">The Anti-Trafficking Review, 19</p>
           <div class="pub-links">
-            <a href="https://doi.org/10.14197/atr.201222198" target="_blank" class="pub-link">DOI</a>
             <a href="https://antitraffickingreview.org/index.php/atrjournal/article/view/651" target="_blank" class="pub-link">Access</a>
           </div>
         </div>
@@ -1347,7 +1343,6 @@
           <p class="pub-authors">Su, Y., Valiquette, T., &amp; Cowper-Smith, Y.</p>
           <p class="pub-venue">Statelessness and Citizenship Review, 3(1), 155–162</p>
           <div class="pub-links">
-            <a href="https://doi.org/10.35715/SCR3001.1114" target="_blank" class="pub-link">DOI</a>
             <a href="https://statelessnessandcitizenshipreview.com/index.php/journal/article/view/309" target="_blank" class="pub-link">Access</a>
           </div>
         </div>
@@ -1361,7 +1356,6 @@
           <p class="pub-authors">Cowper-Smith, Y., Su, Y., &amp; Valiquette, T.</p>
           <p class="pub-venue">Journal of Gender Studies</p>
           <div class="pub-links">
-            <a href="https://doi.org/10.1080/09589236.2021.1949970" target="_blank" class="pub-link">DOI</a>
             <a href="https://www.tandfonline.com/doi/full/10.1080/09589236.2021.1949970" target="_blank" class="pub-link">Access</a>
           </div>
         </div>
@@ -1555,7 +1549,7 @@
   <div class="cite-modal-overlay" id="citeModal">
     <div class="cite-modal">
       <h3>Citation</h3>
-      <div class="cite-box" id="citeText">Valiquette, T., &amp; Su, Y. (2026). Flipping the Lens: Using Instagram for Photovoice and Videovoice With LGBTQ+ Migrants in São Paulo. <em>Qualitative Inquiry</em>, 0(0). https://doi.org/10.1177/10778004261417671</div>
+      <div class="cite-box" id="citeText"></div>
       <div class="cite-actions">
         <button class="cite-close-btn" id="citeClose">Close</button>
         <button class="cite-copy-btn" id="citeCopy">
@@ -1645,11 +1639,16 @@
     const citeClose  = document.getElementById('citeClose');
     const citeCopy   = document.getElementById('citeCopy');
     const citeText   = document.getElementById('citeText');
-    const openCite   = document.getElementById('openCiteModal');
 
-    openCite.addEventListener('click', () => {
-      citeModal.classList.add('open');
-      document.body.style.overflow = 'hidden';
+    let currentCitation = '';
+
+    document.querySelectorAll('.cite-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentCitation = btn.dataset.citation;
+        citeText.textContent = currentCitation;
+        citeModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
     });
 
     function closeCiteModal() {
@@ -1662,8 +1661,7 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCiteModal(); });
 
     citeCopy.addEventListener('click', () => {
-      const text = `Valiquette, T., & Su, Y. (2026). Flipping the Lens: Using Instagram for Photovoice and Videovoice With LGBTQ+ Migrants in São Paulo. Qualitative Inquiry, 0(0). https://doi.org/10.1177/10778004261417671`;
-      navigator.clipboard.writeText(text).then(() => {
+      navigator.clipboard.writeText(currentCitation).then(() => {
         citeCopy.textContent = '✓ Copied!';
         citeCopy.classList.add('copied');
         setTimeout(() => {
