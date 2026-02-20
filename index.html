@@ -806,6 +806,152 @@
       margin-bottom: 2.5rem;
     }
 
+    /* ── MODAL ───────────────────────────────────────── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,20,40,0.7);
+      backdrop-filter: blur(4px);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 520px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.25);
+      position: relative;
+      animation: modalIn 0.25s ease;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.25rem; right: 1.25rem;
+      background: var(--bg);
+      border: none;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 1.1rem;
+      transition: background 0.15s;
+    }
+
+    .modal-close:hover { background: var(--border); }
+
+    .modal h3 {
+      font-family: 'Lora', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+
+    .modal-subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1.75rem;
+      line-height: 1.5;
+    }
+
+    .form-group {
+      margin-bottom: 1.1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--mid);
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: var(--slate);
+      background: var(--bg);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      resize: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+    }
+
+    .form-group input[readonly] {
+      color: var(--muted);
+      cursor: default;
+    }
+
+    .modal-submit {
+      width: 100%;
+      margin-top: 0.5rem;
+      padding: 0.85rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .modal-submit:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    .modal-success {
+      display: none;
+      text-align: center;
+      padding: 1.5rem 0 0.5rem;
+    }
+
+    .modal-success .success-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .modal-success h4 {
+      font-family: 'Lora', serif;
+      font-size: 1.2rem;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-success p {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
     /* ── SCROLL INDICATOR ────────────────────────────── */
     .scroll-indicator {
       position: absolute;
@@ -1005,7 +1151,7 @@
           <p class="pub-authors">Ayeb-Karlsson, S., Valiquette, T., Cockbain, E., &amp; Duran, L.</p>
           <p class="pub-venue">Journal of Social Welfare and Family Law</p>
           <div class="pub-links">
-            <a href="mailto:ty.valiquette@gmail.com" class="pub-link">Request PDF</a>
+            <button class="pub-link request-pdf-btn" data-title='"Dumped in a hotel by the sea": The risks and harms of human trafficking and exploitation associated with placing unaccompanied asylum-seeking children in Home Office Hotels'>Request PDF</button>
           </div>
         </div>
 
@@ -1018,7 +1164,7 @@
           <p class="pub-authors">Valiquette, T., &amp; Su, Y.</p>
           <p class="pub-venue">Journal of Qualitative Inquiry</p>
           <div class="pub-links">
-            <a href="mailto:ty.valiquette@gmail.com" class="pub-link">Request PDF</a>
+            <button class="pub-link request-pdf-btn" data-title="Flipping the Lens: Exploring LGBTQ+ Refugee and Migrant Mobilities in São Paulo, Brazil with Photovoice and Videovoice">Request PDF</button>
           </div>
         </div>
 
@@ -1031,7 +1177,7 @@
           <p class="pub-authors">Su, Y., Valiquette, T., Kinitz, D., &amp; De Oliveira Cunha, C.</p>
           <p class="pub-venue">Gender, Work &amp; Organization</p>
           <div class="pub-links">
-            <a href="mailto:ty.valiquette@gmail.com" class="pub-link">Request PDF</a>
+            <button class="pub-link request-pdf-btn" data-title='"Working the Pages": Entrepreneurial Livelihood Strategies of Trans Venezuelan Asylum Seekers in Brazil during COVID-19'>Request PDF</button>
           </div>
         </div>
 
@@ -1317,6 +1463,41 @@
     </div>
   </section>
 
+  <!-- PDF REQUEST MODAL -->
+  <div class="modal-overlay" id="pdfModal">
+    <div class="modal">
+      <button class="modal-close" id="modalClose">&#x2715;</button>
+      <h3>Request a PDF</h3>
+      <p class="modal-subtitle">Fill in the form below and Tyler will send you a copy of the paper directly.</p>
+
+      <form id="pdfForm" action="https://formspree.io/f/mzdaarnz" method="POST">
+        <div class="form-group">
+          <label for="req-name">Your Name</label>
+          <input type="text" id="req-name" name="name" placeholder="Jane Smith" required />
+        </div>
+        <div class="form-group">
+          <label for="req-email">Your Email</label>
+          <input type="email" id="req-email" name="email" placeholder="jane@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="req-paper">Paper Requested</label>
+          <input type="text" id="req-paper" name="paper" readonly />
+        </div>
+        <div class="form-group">
+          <label for="req-details">Additional Details</label>
+          <textarea id="req-details" name="details" rows="4" placeholder="Tell Tyler a bit about yourself or your interest in this paper (optional)..."></textarea>
+        </div>
+        <button type="submit" class="modal-submit">Send Request</button>
+      </form>
+
+      <div class="modal-success" id="modalSuccess">
+        <div class="success-icon">✅</div>
+        <h4>Request Sent!</h4>
+        <p>Tyler will be in touch with you shortly at the email you provided.</p>
+      </div>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer>
     <p>&copy; 2026 Tyler Valiquette &middot; PhD Candidate, University College London</p>
@@ -1355,6 +1536,52 @@
     }, { threshold: 0.4 });
 
     sections.forEach(s => observer.observe(s));
+
+    // PDF Request Modal
+    const modal        = document.getElementById('pdfModal');
+    const modalClose   = document.getElementById('modalClose');
+    const paperInput   = document.getElementById('req-paper');
+    const pdfForm      = document.getElementById('pdfForm');
+    const modalSuccess = document.getElementById('modalSuccess');
+
+    document.querySelectorAll('.request-pdf-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        paperInput.value = btn.dataset.title;
+        pdfForm.style.display = '';
+        modalSuccess.style.display = 'none';
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+      pdfForm.reset();
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    pdfForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(pdfForm);
+      try {
+        const res = await fetch(pdfForm.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          pdfForm.style.display = 'none';
+          modalSuccess.style.display = 'block';
+          setTimeout(closeModal, 3500);
+        }
+      } catch(err) {
+        alert('Something went wrong. Please try again or email ty.valiquette@gmail.com directly.');
+      }
+    });
 
     // Publication filter buttons
     document.querySelectorAll('.filter-btn').forEach(btn => {
